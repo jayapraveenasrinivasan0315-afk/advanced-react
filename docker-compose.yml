@@ -1,0 +1,64 @@
+services:
+  advanced-react:
+    container_name: advanced-react
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    networks:
+      - secure-network
+    volumes:
+      - advanced-react-data:/usr/share/nginx/html
+    depends_on:
+      - advanced-react-server
+
+  advanced-react-server:
+    container_name: advanced-react-server
+    build:
+      context: ../advanced-react-server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:8000"
+    networks:
+      - secure-network
+    volumes:
+      - advanced-react-server-data:/usr/src/app/data
+    environment:
+      PORT: 8000
+      DATABASE_URL: "postgresql://postgres:030615@db:5432/react-course?schema=public&sslmode=disable"
+      JWT_SECRET: "your-super-secret-jwt-key-change-in-production"
+      JWT_ACCESS_EXPIRATION_TIME: "15m"
+      JWT_REFRESH_EXPIRATION_TIME: "7d"
+      FRONTEND_URL: "http://localhost:5173"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+
+  db:
+    container_name: advanced-react-db
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "030615"
+      POSTGRES_DB: react-course
+    ports:
+      - "5433:5432"
+    networks:
+      - secure-network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      
+networks:
+  secure-network:
+    driver: bridge
+volumes:
+  advanced-react-data:
+  advanced-react-server-data:
+  pgdata:

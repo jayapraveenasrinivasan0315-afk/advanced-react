@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "5173:80"
+      - "80:80"
     networks:
       - secure-network
     volumes:
@@ -30,7 +30,7 @@ services:
       JWT_SECRET: "your-super-secret-jwt-key-change-in-production"
       JWT_ACCESS_EXPIRATION_TIME: "15m"
       JWT_REFRESH_EXPIRATION_TIME: "7d"
-      FRONTEND_URL: "http://localhost:5173"
+      FRONTEND_URL: "http://localhost:80"
     depends_on:
       db:
         condition: service_healthy

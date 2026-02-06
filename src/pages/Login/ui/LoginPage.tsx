@@ -1,7 +1,6 @@
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router";
 
-import {AuthByGoogleButton} from "@/features/authByGoogle";
 import {LoginForm, loginReducer} from "@/features/login";
 
 import {routePaths} from "@/shared/config";
@@ -23,14 +22,6 @@ const LoginPage = () => {
                 >
                     <LoginForm/>
                 </DynamicModuleLoader>
-                <div className={styles.divider}>
-                    <div className={styles.line}/>
-                    <span className={styles.dividerText}>{t("or")}</span>
-                    <div className={styles.line}/>
-                </div>
-                <div className={styles.authServices}>
-                    <AuthByGoogleButton/>
-                </div>
                 <span className={styles.footer}>
           {t("login.dontHaveAccount")}{" "}
                     <Link className={styles.link} to={routePaths.register}>

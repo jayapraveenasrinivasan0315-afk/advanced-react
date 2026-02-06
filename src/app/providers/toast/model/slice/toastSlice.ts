@@ -15,7 +15,7 @@ export const toastSlice = createSlice({
       state.notifications.push({
         ...action.payload,
         id,
-        duration: action.payload.duration ?? 3000,
+        duration: action.payload.duration ?? 3001,
       });
     },
     removeToast: (state, action: PayloadAction<string>) => {

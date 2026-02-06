@@ -7,7 +7,6 @@ import {
 
 import { toastReducer } from "@/app/providers/toast/model/slice/toastSlice";
 
-import { authByGoogleReducer } from "@/features/authByGoogle";
 
 import { userReducer } from "@/entities/user";
 
@@ -23,7 +22,6 @@ export const createStore = (
 ): ReduxStoreWithManager => {
   const rootReducer: ReducersMapObject<StateSchema> = {
     user: userReducer,
-    authByGoogle: authByGoogleReducer,
     toast: toastReducer,
     [baseAPI.reducerPath]: baseAPI.reducer,
     ...(asyncReducers as Partial<ReducersMapObject<StateSchema>>),

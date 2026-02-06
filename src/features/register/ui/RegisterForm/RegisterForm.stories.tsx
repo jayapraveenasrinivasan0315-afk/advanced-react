@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { AuthMethod } from "@/shared/config";
 import { StoreDecorator } from "@/shared/config/storybook";
 
 import { registerReducer } from "../../model/slice/registerSlice";
@@ -29,11 +28,9 @@ export const CredentialsStep: Story = {
   parameters: {
     initialState: {
       registerForm: {
-        email: "",
         phone: "",
         password: "",
         isLoading: false,
-        method: AuthMethod.EMAIL,
         step: FormSteps.CREDENTIALS,
       },
     },
@@ -44,11 +41,9 @@ export const CreatePasswordStep: Story = {
   parameters: {
     initialState: {
       registerForm: {
-        email: "test@test.com",
-        phone: "",
+        phone: "+1234567890",
         password: "",
         isLoading: false,
-        method: AuthMethod.EMAIL,
         step: FormSteps.PASSWORD,
       },
     },
@@ -59,11 +54,9 @@ export const VerificationStep: Story = {
   parameters: {
     initialState: {
       registerForm: {
-        email: "test@test.com",
-        phone: "",
+        phone: "+1234567890",
         password: "123456",
         isLoading: false,
-        method: AuthMethod.EMAIL,
         step: FormSteps.VERIFICATION,
       },
     },

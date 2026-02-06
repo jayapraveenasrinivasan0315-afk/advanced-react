@@ -5,9 +5,8 @@ import { applyUserSession } from "@/entities/user";
 import { extractErrorMessage, httpClient } from "@/shared/api";
 
 type LoginArgs = {
-  email?: string;
-  phone?: string;
-  password?: string;
+  phone: string;
+  password: string;
 };
 
 export const login = createAsyncThunk<void, LoginArgs, { rejectValue: string }>(

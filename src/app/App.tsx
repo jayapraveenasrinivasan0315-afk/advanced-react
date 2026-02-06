@@ -1,6 +1,6 @@
 import {Suspense, useEffect} from "react";
 
-import {refreshSession, userActions} from "@/entities/user";
+import {userActions} from "@/entities/user";
 
 import {setAuthFailureHandler} from "@/shared/api";
 import {languageCurrencyList, type SupportedLngsType} from "@/shared/config";
@@ -14,7 +14,6 @@ function App() {
 
     useEffect(() => {
         dispatch(userActions.initUserData());
-        dispatch(refreshSession());
         setAuthFailureHandler(() => {
             dispatch(userActions.clearUserData());
         });

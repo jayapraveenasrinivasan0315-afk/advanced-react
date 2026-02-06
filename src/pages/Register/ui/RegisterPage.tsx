@@ -1,7 +1,6 @@
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router";
 
-import {AuthByGoogleButton} from "@/features/authByGoogle";
 import {
     FormSteps,
     type FormStepsType,
@@ -60,14 +59,6 @@ const RegisterPage = () => {
                     <RegisterForm/>
                     {isCredentialsStep && (
                         <>
-                            <div className={styles.divider}>
-                                <div className={styles.line}/>
-                                <span className={styles.dividerText}>{t("or")}</span>
-                                <div className={styles.line}/>
-                            </div>
-                            <div className={styles.authServices}>
-                                <AuthByGoogleButton/>
-                            </div>
                             <span className={styles.footer}>
                 {t("register.alreadyHaveAccount")}{" "}
                                 <Link className={styles.link} to={routePaths.login}>

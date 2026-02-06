@@ -6,8 +6,7 @@ import { registerActions } from "../slice/registerSlice";
 import { FormSteps } from "../types/registerForm";
 
 type RegisterArgs = {
-  email?: string;
-  phone?: string;
+  phone: string;
   password: string;
 };
 

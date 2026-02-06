@@ -2,7 +2,6 @@ import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject,} from "@redux
 
 import type {ToastSchema} from "@/app/providers/toast/model/types/toast";
 
-import type {AuthByGoogleSchema} from "@/features/authByGoogle/model/types/authByGoogle";
 import type {LoginFormSchema} from "@/features/login";
 import type {ManageAddressSchema} from "@/features/manageAddress/model/types/Address";
 import type {ProductFiltersSchema} from "@/features/productFilters";
@@ -14,7 +13,6 @@ import type {baseAPI} from "@/shared/api/rtk/baseAPI";
 
 export interface StateSchema {
     user: UserSchema;
-    authByGoogle: AuthByGoogleSchema;
     toast: ToastSchema;
     [baseAPI.reducerPath]: ReturnType<typeof baseAPI.reducer>;
 

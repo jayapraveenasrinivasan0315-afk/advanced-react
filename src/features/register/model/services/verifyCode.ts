@@ -5,8 +5,7 @@ import { applyUserSession, type User } from "@/entities/user";
 import { extractErrorMessage, httpClient } from "@/shared/api";
 
 type VerifyArgs = {
-  email?: string;
-  phone?: string;
+  phone: string;
   code: string;
 };
 

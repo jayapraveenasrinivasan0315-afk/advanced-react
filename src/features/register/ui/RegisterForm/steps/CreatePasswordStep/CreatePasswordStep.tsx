@@ -2,7 +2,6 @@ import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { passwordRequirements } from "@/features/register/config/passwordRequirements";
-import { selectRegisterEmail } from "@/features/register/model/selectors/selectRegisterEmail/selectRegisterEmail";
 import { selectRegisterIsLoading } from "@/features/register/model/selectors/selectRegisterIsLoading/selectRegisterIsLoading";
 import { selectRegisterPassword } from "@/features/register/model/selectors/selectRegisterPassword/selectRegisterPassword";
 import { selectRegisterPhone } from "@/features/register/model/selectors/selectRegisterPhone/selectRegisterPhone.ts";
@@ -22,7 +21,6 @@ export const CreatePasswordStep = () => {
 
   const [validationError, setValidationError] = useState(false);
 
-  const email = useAppSelector(selectRegisterEmail);
   const phone = useAppSelector(selectRegisterPhone);
   const isLoading = useAppSelector(selectRegisterIsLoading);
   const password = useAppSelector(selectRegisterPassword);
@@ -44,7 +42,7 @@ export const CreatePasswordStep = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validationError) {
-      dispatch(register({ email, phone, password }));
+      dispatch(register({ phone, password }));
     }
   };
 

@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import { selectRegisterEmail } from "@/features/register/model/selectors/selectRegisterEmail/selectRegisterEmail";
 import { selectRegisterError } from "@/features/register/model/selectors/selectRegisterError/selectRegisterError";
 import { selectRegisterIsLoading } from "@/features/register/model/selectors/selectRegisterIsLoading/selectRegisterIsLoading";
 import { selectRegisterPhone } from "@/features/register/model/selectors/selectRegisterPhone/selectRegisterPhone.ts";
@@ -20,20 +19,19 @@ export const VerificationStep = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const email = useAppSelector(selectRegisterEmail);
   const phone = useAppSelector(selectRegisterPhone);
   const error = useAppSelector(selectRegisterError);
   const isLoading = useAppSelector(selectRegisterIsLoading);
 
   const onSubmit = async (code: string) => {
-    const result = await dispatch(verifyCode({ email, phone, code }));
+    const result = await dispatch(verifyCode({ phone, code }));
     if (verifyCode.fulfilled.match(result)) {
       navigate(routePaths.home);
     }
   };
 
   const handleResend = () => {
-    dispatch(resendCode({ email, phone }));
+    dispatch(resendCode({ phone }));
   };
 
   return (
@@ -41,7 +39,7 @@ export const VerificationStep = () => {
       <form className={styles.form}>
         <div className={styles.title}>
           {t("register.verification.sentTo")} <br />
-          <span>{email || phone}</span>
+          <span>{phone}</span>
         </div>
         <OTPInput disabled={isLoading} error={!!error} onComplete={onSubmit} />
         {error && <div className={styles.error}>{error}</div>}

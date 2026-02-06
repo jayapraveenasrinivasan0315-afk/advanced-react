@@ -1,13 +1,9 @@
-import type { AuthMethodType } from "@/shared/config";
-
 export interface RegisterFormSchema {
-  email?: string;
-  phone?: string;
+  phone: string;
   password: string;
   isLoading: boolean;
   error?: string;
   step: FormStepsType;
-  method: AuthMethodType;
 }
 
 export const FormSteps = {

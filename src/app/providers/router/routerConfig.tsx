@@ -1,6 +1,5 @@
 import type {RouteProps} from "react-router";
 
-import {AuthCallbackPage} from "@/pages/AuthCallbackPage";
 import {CategoryPage} from "@/pages/Category";
 import {HomePage} from "@/pages/Home";
 import {LoginPage} from "@/pages/Login";
@@ -21,10 +20,6 @@ export const routeConfig: RouteProps[] = [
     {
         path: routePaths[AppRoutes.REGISTER],
         element: <RegisterPage/>,
-    },
-    {
-        path: routePaths[AppRoutes.AUTH_CALLBACK],
-        element: <AuthCallbackPage/>,
     },
     {
         path: routePaths[AppRoutes.CATEGORY],

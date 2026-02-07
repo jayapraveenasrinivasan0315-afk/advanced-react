@@ -8,8 +8,6 @@ services:
       - "80:80"
     networks:
       - secure-network
-    volumes:
-      - advanced-react-data:/usr/share/nginx/html
     depends_on:
       - advanced-react-server
 
@@ -22,15 +20,13 @@ services:
       - "3001:8000"
     networks:
       - secure-network
-    volumes:
-      - advanced-react-server-data:/usr/src/app/data
     environment:
       PORT: 8000
       DATABASE_URL: "postgresql://postgres:030615@db:5432/react-course?schema=public&sslmode=disable"
       JWT_SECRET: "your-super-secret-jwt-key-change-in-production"
       JWT_ACCESS_EXPIRATION_TIME: "15m"
       JWT_REFRESH_EXPIRATION_TIME: "7d"
-      FRONTEND_URL: "http://100.27.250.197:80"
+      FRONTEND_URL: "http://100.27.250.197"
     depends_on:
       db:
         condition: service_healthy
@@ -43,8 +39,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "030615"
       POSTGRES_DB: react-course
-    ports:
-      - "5433:5432"
     networks:
       - secure-network
     volumes:
@@ -54,11 +48,10 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-      
+
 networks:
   secure-network:
     driver: bridge
+
 volumes:
-  advanced-react-data:
-  advanced-react-server-data:
   pgdata:

@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: advanced-react-services
+  labels:
+    app: advanced-react
   spec: 
     selector:
       app: advanced-react

@@ -24,4 +24,36 @@ jobs:
 
       - name: push the docker image
         run: docker push ${{secrets.DOCKER_USERNAME}}/advanced-react:latest
-    
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+         role-to-assume: ${{secrets.AWS_ROLE_ARN}}
+         aws-region: ap-south-1
+      
+      - name: install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          mv kubectl /usr/local/bin/
+      
+      - name: update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region ap-south-1 \
+            --name ${{secrets.CLUSTER_NAME}}
+      
+      - name: deploy to kubernetes cluster
+        run: |
+          kubectl apply -f kubernetes/deployment.yml
+          kubectl apply -f kubernetes/services.yml
+       
+      - name: verify deployment
+        run: kubectl rollout status deployment/advanced-react
+        
+
+      
+
+        
+      
+        

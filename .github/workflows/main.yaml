@@ -16,14 +16,18 @@ jobs:
          username: ${{secrets.DOCKER_USERNAME}}
          password: ${{secrets.DOCKER_PASSWORD}}
 
-      - name: build the docker image
-        run: docker build -t advanced-react:latest -f Dockerfile .
+      - name: set up docker buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: tag the docker image
-        run: docker tag advanced-react:latest ${{secrets.DOCKER_USERNAME}}/advanced-react:latest
-
-      - name: push the docker image
-        run: docker push ${{secrets.DOCKER_USERNAME}}/advanced-react:latest
+      - name: build and push the docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{secrets.DOCKER_USERNAME}}/advanced-react:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4

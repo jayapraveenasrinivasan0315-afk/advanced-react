@@ -4,12 +4,12 @@ metadata:
   name: advanced-react-services
   labels:
     app: advanced-react
-  spec: 
-    selector:
-      app: advanced-react
+spec: 
+  selector:
+    app: advanced-react
     ports:
-      - protocol: TCP
-        port: 3000
-        targetPort: 3000
-    type: clusterIP
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
     

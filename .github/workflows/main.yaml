@@ -54,7 +54,7 @@ jobs:
           kubectl apply -f kubernetes/services.yml
        
       - name: verify deployment
-        run: kubectl rollout status deployment/advanced-react
+        run: kubectl rollout status deployment/deployment
         
 
       

@@ -49,15 +49,11 @@ jobs:
             --name ${{secrets.CLUSTER_NAME}}
       
       - name: deploy to kubernetes cluster
-        run: |
-          kubectl apply -f kubernetes/deployment.yml
-          kubectl apply -f kubernetes/services.yml
+        run: kubectl apply -f kubernetes/deployment.yml
        
       - name: verify deployment
-        run: kubectl rollout status deployment/deployment
+        run: kubectl rollout status deployment/advanced-react
         
-
-      
 
         
       

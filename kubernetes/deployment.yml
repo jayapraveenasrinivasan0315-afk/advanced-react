@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-react
+  labels:
+    app: advanced-react
+spec:
+  replicas: 2
+  selector:
+    matchlabels:
+      app: advanced-react
+  template:
+    metadata:
+      labels:
+        app: advanced-react
+    spec:
+      containers:
+        - name: advanced-react
+          image: praveena0306/advanced-react:latest
+    
+          ports:
+            - containerPort: 3000

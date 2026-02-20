@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: advanced-react-services
+  spec: 
+    selector:
+      app: advanced-react
+    ports:
+      - protocol: TCP
+        port: 3000
+        targetPort: 3000
+    type: clusterIP
+    

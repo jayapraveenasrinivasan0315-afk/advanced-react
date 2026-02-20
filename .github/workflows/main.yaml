@@ -35,6 +35,12 @@ jobs:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: ap-south-1
+      - name: update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region ap-south-1 \
+            --name ${{secrets.CLUSTER_NAME}}
+      
       
       - name: install kubectl
         run: |
@@ -42,11 +48,6 @@ jobs:
           chmod +x kubectl
           mv kubectl /usr/local/bin/
       
-      - name: update kubeconfig
-        run: |
-          aws eks update-kubeconfig \
-            --region ap-south-1 \
-            --name ${{secrets.CLUSTER_NAME}}
       
       - name: deploy to kubernetes cluster
         run: kubectl apply -f kubernetes/deployment.yml

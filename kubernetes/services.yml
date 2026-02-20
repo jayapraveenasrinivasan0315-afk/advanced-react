@@ -6,7 +6,8 @@ metadata:
     app: advanced-react
 spec: 
   selector:
-    app: advanced-react
+    matchLabels:
+      app: advanced-react
     ports:
     - protocol: TCP
       port: 3000

@@ -26,8 +26,7 @@ services:
       JWT_SECRET: "your-super-secret-jwt-key-change-in-production"
       JWT_ACCESS_EXPIRATION_TIME: "15m"
       JWT_REFRESH_EXPIRATION_TIME: "7d"
-      FRONTEND_URL: "${FRONTEND_URL:-http://localhost:80}"
-      CORS_ORIGINS: "${CORS_ORIGINS:-http://localhost:80,http://localhost,http://advanced-react}"
+      FRONTEND_URL: "http://100.27.250.197"
     depends_on:
       db:
         condition: service_healthy

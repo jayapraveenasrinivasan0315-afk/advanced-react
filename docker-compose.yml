@@ -39,6 +39,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "030615"
       POSTGRES_DB: react-course
+    ports:
+      - "5432:5432"
     networks:
       - secure-network
     volumes:

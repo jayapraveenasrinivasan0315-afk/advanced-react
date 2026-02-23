@@ -22,7 +22,7 @@ export default defineConfig({
         environment: "jsdom",
         setupFiles: ["./src/shared/config/test/setupTests.ts"],
         env: {
-            VITE_API_URL: 'http://100.27.250.197:3001'
+            VITE_API_URL: '/api'
         }
     },
 });
